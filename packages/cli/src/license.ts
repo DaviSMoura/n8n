@@ -220,6 +220,10 @@ export class License implements LicenseProvider {
 	}
 
 	isLicensed(_feature: BooleanLicenseFeature) {
+		if (_feature === LICENSE_FEATURES.SHOW_NON_PROD_BANNER) {
+			return false;
+		}
+
 		return true;
 	}
 
