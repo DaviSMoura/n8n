@@ -18,24 +18,17 @@ export class LicenseState {
 		this.licenseProvider = provider;
 	}
 
-	private assertProvider(): asserts this is { licenseProvider: LicenseProvider } {
-		if (!this.licenseProvider) throw new ProviderNotSetError();
-	}
 
 	// --------------------
 	//     core queries
 	// --------------------
 
-	isLicensed(feature: BooleanLicenseFeature) {
-		this.assertProvider();
-
-		return this.licenseProvider.isLicensed(feature);
+	isLicensed(_feature: BooleanLicenseFeature) {
+		return true;
 	}
 
-	getValue<T extends keyof FeatureReturnType>(feature: T): FeatureReturnType[T] {
-		this.assertProvider();
-
-		return this.licenseProvider.getValue(feature);
+	getValue<T extends keyof FeatureReturnType>(_feature: T): FeatureReturnType[T] {
+		return UNLIMITED_LICENSE_QUOTA as FeatureReturnType[T];
 	}
 
 	// --------------------
